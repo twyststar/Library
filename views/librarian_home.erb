@@ -1,0 +1,40 @@
+<h1>Welcome to the To Do App</h1>
+
+<h3>Add New List</h3>
+<form  action="/librarian_home" method="post">
+  <div class="form-group">
+    <label class='form-label' for="name">Add book:</label>
+    <input type="text" name="name" id='name' placeholder="Book Title" autofocus>
+    <button type="submit" class="button btn">Add List</button>
+  </div>
+</form>
+
+<% if @books.any?() %>
+<p>Click on book to see more</p>
+<ul>
+  <% @books.each do |book| %>
+  <li><a href="/book_edit/<%= book.id() %>"><%= book.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no books yet!</p>
+<% end %>
+
+
+
+
+<p> add author to book</p>
+
+<form action="/authors" method="post">
+  <label for="book_id">Select a Book</label>
+<select id='book_id' name='book_id' type='text'>
+  <% @books.each() do |book| %>
+    <option value="<%= book.id()%>"> <%= book.name() %> </option>
+  <% end %>
+</select>
+
+  <label for="author">Author's Name:</label>
+  <input id="author" name="author" type="text">
+
+  <button type="submit">Add author</button>
+</form>
