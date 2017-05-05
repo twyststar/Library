@@ -59,6 +59,7 @@ class Author
   end
 
   def delete
+    DB.exec("DELETE FROM books_authors WHERE author_id = #{self.id()};")
     DB.exec("DELETE FROM authors WHERE id = #{self.id()};")
   end
 

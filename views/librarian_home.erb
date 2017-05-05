@@ -19,22 +19,3 @@
 <% else %>
 <p>There are no books yet!</p>
 <% end %>
-
-
-
-
-<p> add author to book</p>
-
-<form action="/authors" method="post">
-  <label for="book_id">Select a Book</label>
-<select id='book_id' name='book_id' type='text'>
-  <% @books.each() do |book| %>
-    <option value="<%= book.id()%>"> <%= book.name() %> </option>
-  <% end %>
-</select>
-
-  <label for="author">Author's Name:</label>
-  <input id="author" name="author" type="text">
-
-  <button type="submit">Add author</button>
-</form>

@@ -44,7 +44,7 @@ class Book
     attributes.fetch(:author_ids, []).each() do |author_id|
     DB.exec("INSERT INTO books_authors (author_id, book_id) VALUES (#{author_id}, #{self.id()});")
   end
-  
+
   def authors
     book_authors = []
   results = DB.exec("SELECT author_id FROM books_authors WHERE book_id = #{self.id()};")
@@ -59,7 +59,11 @@ class Book
   end
 
   def delete
+    DB.exec("DELETE FROM checkouts WHERE book_id = #{self.id()};")
     DB.exec("DELETE FROM books WHERE id = #{self.id()};")
   end
+  def delete_auth
+    DB.exec("DELETE FROM books_authors WHERE book_id = #{self.id()};")
 
+  end
 end

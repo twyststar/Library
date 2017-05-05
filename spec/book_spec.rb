@@ -83,4 +83,13 @@ describe(Book) do
       expect(book.authors()).to(eq([george, brad]))
     end
   end
+  describe("#delete_auth") do
+    it("deletes author connections") do
+      book = Book.new({:name => "Oceans Eleven", :id => nil})
+      book.save()
+      george = Author.new({:name => "George Clooney", :id => nil})
+      george.save()
+      expect(book.authors()).to(eq([]))
+    end
+  end
 end
