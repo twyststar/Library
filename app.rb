@@ -48,6 +48,14 @@ delete("/author_edit/:id") do
   @authors = @book.authors()
   erb(:book_edit)
 end
+
+patch("/book_edit/:id") do
+  name = params.fetch("name")
+  @book = Book.find(params.fetch("id").to_i())
+  @book.update({:name => name})
+  @authors = @book.authors()
+  erb(:book_edit)
+end
 post('/patron')do
   name = params.fetch("name")
   patron = Patron.new({:name => name, :id => nil})
