@@ -56,11 +56,13 @@ patch("/book_edit/:id") do
   @authors = @book.authors()
   erb(:book_edit)
 end
+
 post('/patron')do
   name = params.fetch("name")
   patron = Patron.new({:name => name, :id => nil})
   patron.save()
   @books= Book.all()
-  @patron = Patron.find(patron.id())
+  @patron = patron
+
   erb(:patron)
 end

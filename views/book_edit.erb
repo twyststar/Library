@@ -1,6 +1,7 @@
+<h2>Title:</h2>
 <h1><%=@book.name%></h1>
 
-<h2>Authors:</h2>
+<h2>Author(s):</h2>
 <% if @authors.any?() %>
 <ul>
   <% @authors.each do |author| %>
@@ -13,7 +14,7 @@
 <br>
 
 
-<p> add author to book</p>
+<p> Add an author to the book</p>
 
 <form action="/author" method="post">
   <input id="book_id" name="book_id" type="hidden" value="<%= @book.id() %>">
@@ -23,10 +24,11 @@
   <button type="submit">Add author</button>
 </form>
 <br>
+<p> Edit the book's title:</p>
 <form action="/book_edit/<%= @book.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
-  <label for="name">Edit the book's name:</label>
+  <label for="name">New title:</label>
   <input id="name" name="name" type="text">
 
   <button type="submit">Update</button>

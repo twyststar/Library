@@ -1,0 +1,19 @@
+<h1>Welcome, <%= @patron.name %>.</h1>
+<div class="col-xs-6">
+<% if @books.any?() %>
+<h3>Available Titles:</h3>
+<p>Click a title to check it out:</p>
+<ul>
+  <% @books.each do |book| %>
+  <li><a href="/patron_edit/<%= patron.id() %>"><%= book.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no books yet!</p>
+<% end %>
+</div>
+
+
+<div class="col-xs-6">
+  <%= @patron.books %>
+</div>

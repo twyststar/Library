@@ -63,26 +63,26 @@ describe(Patron) do
     end
   end
   describe("#books") do
-    it("returns all of the books by a particular author") do
-      author = Author.new({:name => "Brad Pitt", :id => nil})
-      author.save()
+    it("returns all of the books for this patron") do
+      patron = Patron.new({:name => "Brad Pitt", :id => nil})
+      patron.save()
       oceans = Book.new({:name => "Oceans Eleven", :id => nil})
       oceans.save()
       oceans2 = Book.new({:name => "Oceans Twelve", :id => nil})
       oceans2.save()
-      author.update({:book_ids => [oceans.id(), oceans2.id()]})
-      expect(author.books()).to(eq([oceans, oceans2]))
+      patron.update({:book_ids => [oceans.id(), oceans2.id()]})
+      expect(patron.books()).to(eq([oceans, oceans2]))
     end
   end
 
   describe("#delete") do
-    it("lets you delete a author from the database") do
-      test_author= Author.new({:name=> "Tom Sawyer", :id=> nil})
-      test_author.save()
-      test_author2 = Author.new({:name=> "Ernest Hemingway", :id=> nil})
-      test_author2.save()
-      test_author.delete()
-      expect(Author.all()).to(eq([test_author2]))
+    it("lets you delete a patron from the database") do
+      patron = Patron.new({:name => "Brad Pitt", :id => nil})
+      patron.save()
+      patron2 = Patron.new({:name => "Rad Pitt", :id => nil})
+      patron2.save()
+      patron.delete()
+      expect(Patron.all()).to(eq([patron2]))
     end
   end
 end
